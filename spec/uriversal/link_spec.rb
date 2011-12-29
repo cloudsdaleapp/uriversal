@@ -4,8 +4,8 @@ describe Uriversal::Link do
   
   before(:each) do
     # Sets a default instance
-    @invalid_link = Uriversal::Link.new(raw: 'http://google.com/not_found"', protocol: 'http', domain: 'google.com', path: '/not_found')
-    @valid_link = Uriversal::Link.new(raw: 'http://google.com/"', protocol: 'http', domain: 'google.com', path: '/')
+    @invalid_link = Uriversal.parse('http://google.com/not_found')
+    @valid_link = Uriversal.parse('http://google.com/')
   end
 
   describe '.new' do

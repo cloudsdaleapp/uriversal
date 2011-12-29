@@ -48,11 +48,11 @@ describe Uriversal::Registry do
           end
         end
       end
-      @valid_link = Uriversal::Link.new(raw: 'http://valid-registry-match.com"', protocol: 'http', domain: 'valid-registry-match.com')
-      @valid_file_link = Uriversal::Link.new(raw: 'http://valid-registry-file-match.com/file.end"', protocol: 'http', domain: 'valid-registry-file-match.com', path: '/file', file_type: 'end')
-      @valid_query_link = Uriversal::Link.new(raw: 'http://valid-registry-query-match.com/?q="hello"', protocol: 'http', domain: 'valid-registry-query-match.com', path: '/', query: '?q="hello"')
-      @valid_path_link = Uriversal::Link.new(raw: 'http://valid-registry-path-match.com/path', protocol: 'http', domain: 'valid-registry-match.com', path: '/path')
-      @valid_path_with_file_link = Uriversal::Link.new(raw: 'http://valid-registry-path-match.com/path.png', protocol: 'http', domain: 'valid-registry-match.com', path: '/path', file_type: 'png')
+      @valid_link = Uriversal.parse('http://valid-registry-match.com')
+      @valid_file_link = Uriversal.parse('http://valid-registry-file-match.com/file.end')
+      @valid_query_link = Uriversal.parse('http://valid-registry-query-match.com/?q="hello"')
+      @valid_path_link = Uriversal.parse('http://valid-registry-path-match.com/path')
+      @valid_path_with_file_link = Uriversal.parse('http://valid-registry-path-match.com/path.png')
     end
     it 'should return a match object' do
       [@valid_link,@valid_file_link].each do |link|

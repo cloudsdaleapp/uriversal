@@ -8,14 +8,18 @@ module Uriversal
     attr_accessor :raw, :protocol, :domain, :port, :path, :file_type, :query
     attr_accessor :category, :title, :description, :status
     
-    def initialize(options={})
-      self.raw        = options[:raw]
-      self.protocol   = options[:protocol]
-      self.domain     = options[:domain]
-      self.port       = options[:port]
-      self.path       = options[:path]        ||    ''
-      self.file_type  = options[:file_type]   ||    ''
-      self.query      = options[:query]       ||    ''
+    def initialize(url,options={})
+      if url =~ /^((ftp|https?):\/\/)?([a-z\d]+([\-\.][a-z\d]+)*\.[a-z]{2,6})((:(\d{1,5}))?((\/[\w\'\"\,\-\/\:\&\=\#\%\+\(\)]*)(\.([a-z]{0,4}))?(\?.*)?)?)?$/
+        self.raw       = $0
+        self.protocol  = $2     || 'http'
+        self.domain    = $3     || ''
+        self.port      = $7
+        self.path      = $9     || ''
+        self.file_type = $11    || ''
+        self.query     = $12    || ''
+      else
+        raise ArgumentError, "invalid url"
+      end
     end
     
     # Determains if linked url is a file
