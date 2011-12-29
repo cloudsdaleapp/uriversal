@@ -7,7 +7,20 @@ module Uriversal
   
   autoload :Link, 'uriversal/link'
   
+  
+  
+  def self.strategies
+    @@strategies ||= []
+  end
+  
   autoload :Strategy, 'uriversal/strategy'
+  
+  module Strategies
+    require 'uriversal/strategies/default'
+  end
+  
+
+  
   autoload :Registry, 'uriversal/registry'
   
   def self.registry

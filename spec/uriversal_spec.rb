@@ -50,5 +50,11 @@ describe 'Default Settings' do
   end
   
   describe 'Strategies' do
+    it 'should be 2 or more strategies available' do
+      Uriversal.strategies.length.should >= 1
+    end
+    it 'should be a default strategy' do
+      Uriversal.strategies.include?(Uriversal::Strategies::Default).should == true
+    end
   end
 end
