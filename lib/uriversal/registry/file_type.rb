@@ -20,6 +20,7 @@ module Uriversal
     class FileType
       
       include MatchStrings
+      include Strategies
       include Queries
       
       def initialize(match_strings=[],strategies=[],&block)

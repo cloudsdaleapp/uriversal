@@ -19,7 +19,8 @@ module Uriversal
     
     class Query
       
-      attr_accessor :match_strings
+      include MatchStrings
+      include Strategies
       
       def initialize(match_strings=[],strategies=[],&block)
         super(match_strings,strategies,&block)

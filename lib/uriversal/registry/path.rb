@@ -20,6 +20,7 @@ module Uriversal
     class Path
       
       include MatchStrings
+      include Strategies
       include Queries
       include FileTypes
 
