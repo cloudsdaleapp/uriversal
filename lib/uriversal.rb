@@ -1,6 +1,15 @@
 module Uriversal
   
+  require 'pry'
+  
   autoload :Link, 'uriversal/link'
+  
+  autoload :Strategy, 'uriversal/strategy'
+  autoload :Registry, 'uriversal/registry'
+  
+  def self.registry
+    Uriversal::Registry
+  end
   
   def self.parse(url,options={})
     if url =~ /^((ftp|https?):\/\/)?([a-z\d]+([\-\.][a-z\d]+)*\.[a-z]{2,6})((:(\d{1,5}))?((\/[\w\'\"\,\-\/\:\&\=\#\%\+\(\)]*)(\.([a-z]{0,4}))?(\?.*)?)?)?$/

@@ -14,4 +14,12 @@ describe Uriversal do
 
   end
 
+  describe '.registry' do
+    
+    it 'should return the Uriversal::Registry module' do
+      Uriversal.registry.should == Uriversal::Registry
+    end
+    
+  end
+  
 end
