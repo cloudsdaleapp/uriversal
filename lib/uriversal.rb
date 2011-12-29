@@ -16,10 +16,10 @@ module Uriversal
   autoload :Strategy, 'uriversal/strategy'
   
   module Strategies
+    # Load some default strategies to work with
     require 'uriversal/strategies/default'
+    require 'uriversal/strategies/file'
   end
-  
-
   
   autoload :Registry, 'uriversal/registry'
   

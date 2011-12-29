@@ -26,6 +26,10 @@ module Uriversal
         super(match_strings,strategies,&block)
       end
       
+      def match(link,method)
+        super(link,method)
+      end
+      
     end
   end
 end

@@ -4,16 +4,11 @@ describe Uriversal::Registry::Path do
   
   before(:each) do
     @path = Uriversal::Registry::Path.new [] do;end
-    @path_with_data = Uriversal::Registry::Path.new [/google.com/i],[:google_search,:google_image_search] do;end
   end
   
   describe '.match_strings' do
     it 'should be an array' do
       @path.match_strings.is_a?(Array).should == true
-    end
-    
-    it 'should be crowded' do
-      @path_with_data.match_strings.size.should == 1
     end
   end
   

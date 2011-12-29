@@ -28,6 +28,13 @@ module Uriversal
         instance_eval(&block) unless block.nil?
       end
       
+      def match(link,method)
+        if link.query and !queries.empty?
+          queries.each{ |o| match = o.match(link,:query); return match if match.successful? }
+        end
+        super(link,method)
+      end
+      
     end
   end
 end

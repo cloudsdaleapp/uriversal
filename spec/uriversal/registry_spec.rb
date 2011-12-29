@@ -19,16 +19,6 @@ describe Uriversal::Registry do
       Uriversal::Registry.config do
       end
     end
-    it 'should not fail even though very complex data is supplied' do
-      Uriversal::Registry.config do
-        domain /.*/i, :default do
-          path /\/.*/i, :default do
-            file_type /.{1,4}/i, :file do
-            end
-          end
-        end
-      end
-    end
   end
   
   describe '.domain' do
@@ -39,6 +29,58 @@ describe Uriversal::Registry do
       d = Uriversal::Registry.domain
       Uriversal::Registry.domains[0].should == d
     end
+  end
+  
+  describe '.match' do
+    
+    before(:all) do
+      Uriversal.registry.config do
+        domain [/^valid-registry-match.com$/i], [:default]
+        domain [/^valid-registry-file-match.com$/i] do
+          file_type [/^end$/i], [:file]
+        end
+        domain [/^valid-registry-query-match.com$/i] do
+          query [/^?q="hello"$/i], [:default]
+        end
+        domain [/^valid-registry-path-match.com$/i] do
+          path [/^\/path$/i], [:default]
+        end
+      end
+      @valid_link = Uriversal::Link.new(raw: 'http://valid-registry-match.com"', protocol: 'http', domain: 'valid-registry-match.com')
+      @valid_file_link = Uriversal::Link.new(raw: 'http://valid-registry-file-match.com/file.end"', protocol: 'http', domain: 'valid-registry-file-match.com', path: '/file', file_type: 'end')
+      @valid_query_link = Uriversal::Link.new(raw: 'http://valid-registry-query-match.com/?q="hello"', protocol: 'http', domain: 'valid-registry-query-match.com', path: '/', query: '?q="hello"')
+      @valid_path_link = Uriversal::Link.new(raw: 'http://valid-registry-path-match.com/path', protocol: 'http', domain: 'valid-registry-match.com', path: '/path')
+    end
+    it 'should return a match object' do
+      [@valid_link,@valid_file_link].each do |link|
+        Uriversal::Registry.match(link).class.should == Uriversal::Registry::Match
+      end
+    end
+    it 'should return a match object with valid strategries' do
+      [@valid_link,@valid_file_link,@valid_query_link,@valid_query_link].each do |link|
+        Uriversal::Registry.match(link).match_object.strategies.length.should >= 1
+        Uriversal::Registry.match(link).match_object.strategies.each do |strategry|
+          strategry.constantize.include?(Uriversal::Strategy)
+        end
+      end
+    end
+    
+    it 'should match on file type' do
+      Uriversal::Registry.match(@valid_file_link).match_object.class.should == Uriversal::Registry::FileType
+    end
+    
+    it 'should match on query' do
+      Uriversal::Registry.match(@valid_query_link).match_object.class.should == Uriversal::Registry::Query
+    end
+    
+    it 'should match on path' do
+      Uriversal::Registry.match(@valid_path_link).match_object.class.should == Uriversal::Registry::Path
+    end
+    
+    it 'should match on domain' do
+      Uriversal::Registry.match(@valid_link).match_object.class.should == Uriversal::Registry::Domain
+    end
+    
   end
   
 end

@@ -13,8 +13,9 @@ module Uriversal
       self.protocol   = options[:protocol]
       self.domain     = options[:domain]
       self.port       = options[:port]
-      self.file_type  = options[:file_type] ||    ''
-      self.query      = options[:query]
+      self.path       = options[:path]        ||    ''
+      self.file_type  = options[:file_type]   ||    ''
+      self.query      = options[:query]       ||    ''
     end
     
     # Determains if linked url is a file

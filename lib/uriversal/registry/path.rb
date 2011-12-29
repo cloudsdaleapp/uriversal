@@ -29,6 +29,16 @@ module Uriversal
         instance_eval(&block) unless block.nil?
       end
       
+      def match(link,method)
+        if link.file_type and !file_types.empty?
+          file_types.each{ |o| match = o.match(link,:file_type); return match if match.successful? }
+        end
+        if link.query and !queries.empty?
+          queries.each{ |o| match = o.match(link,:query); return match if match.successful? }
+        end
+        super(link,method)
+      end
+      
     end
   end
 end

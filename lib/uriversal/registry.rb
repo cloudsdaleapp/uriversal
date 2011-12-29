@@ -8,6 +8,14 @@ module Uriversal
         ms = [ms] unless ms.is_a?(Array)
         self.match_strings = ms
       end
+      
+      def match(link,method)
+        match_strings.each do |ms|
+          return Match.new(self,!(ms =~ link.try(method).to_s).nil?)
+        end
+        return Match.new(self)
+      end
+      
     end
     
     module Strategies
@@ -15,8 +23,22 @@ module Uriversal
       def initialize(ms=[],st=[],&block)
         super
         st = [st] unless st.is_a?(Array)
-        self.strategies = st
+        self.strategies = st.map{|s|("Uriversal::Strategies::" + s.to_s.classify)}
       end
+    end
+    
+    class Match
+      attr_reader :match_object
+      
+      def initialize(m,s=false)
+        @match_object = m
+        @successful = s
+      end
+      
+      def successful?
+        @successful
+      end
+      
     end
     
     require 'uriversal/registry/query'
@@ -38,6 +60,13 @@ module Uriversal
     
     def self.config(args={},&block)
       module_eval(&block)
+    end
+
+    def self.match(link)
+      @@domains.each do |domain|
+        match = domain.match(link,:domain)
+        return match if match.successful?
+      end
     end
 
   end

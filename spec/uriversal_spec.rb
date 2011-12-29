@@ -26,24 +26,24 @@ end
 
 describe 'Default Settings' do
   describe 'Registry' do
-    describe 'Domains' do      
+    describe 'Domains' do
       it 'last domain in registry should be matching all domain names' do
-        Uriversal.registry.domains.last.match_strings.should == [/.*/i]
+        Uriversal.registry.domains.last.match_strings.should == [/^.*$/i]
       end
       it 'last domain in registry should return default strategy' do
-        Uriversal.registry.domains.last.strategies.should == [:default]
+        Uriversal.registry.domains.last.strategies.should == ["Uriversal::Strategies::Default"]
       end
       it 'last domain in registry should be matching file types' do
         Uriversal.registry.domains.last.file_types.length.should >= 1
       end
       it 'last domain in registry should be matching all file types' do
         Uriversal.registry.domains.last.file_types.each do |ft|
-          ft.match_strings.should  == [/.*/i]
+          ft.match_strings.should  == [/^.*$/i]
         end
       end
       it 'last domain in registry should be returning file strategy if files are specified' do
         Uriversal.registry.domains.last.file_types.each do |ft|
-          ft.strategies.should  == [:file]
+          ft.strategies.should  == ["Uriversal::Strategies::File"]
         end
       end
     end
