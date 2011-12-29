@@ -1,5 +1,5 @@
 module Uriversal
-  
+
   require "active_support/inflector"
   require 'active_support/core_ext/string'
   
@@ -28,4 +28,7 @@ module Uriversal
     end
   end
   
+  
 end
+
+require 'uriversal/defaults'
