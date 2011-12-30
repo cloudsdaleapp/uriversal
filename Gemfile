@@ -10,7 +10,8 @@ gem "activesupport"
 group :development do
   gem "rspec"
   gem "bundler", "1.1.rc"
-  gem "jeweler", "~> 1.6.4"
-  gem "rcov", ">= 0"
+  gem "jeweler"
+  gem "rcov"
   gem 'pry'
+  gem "rdoc"
 end
