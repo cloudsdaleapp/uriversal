@@ -4,6 +4,7 @@ source "http://rubygems.org"
 
 gem 'i18n'
 gem "activesupport"
+gem 'nokogiri'
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
