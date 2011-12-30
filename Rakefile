@@ -15,12 +15,12 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "uriversal"
-  gem.homepage = "http://github.com/zeeraw/uriversal"
+  gem.homepage = "http://github.com/IOMUSE/Uriversal"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "philip@vallin.se"
-  gem.authors = ["Philip Vieira"]
+  gem.summary = "A gem with main purpose to fetch information through a supplied url and return it in a nice standardized package."
+  gem.description = ""
+  gem.email = "zeeraw@cloudsdale.org"
+  gem.authors = ["Zeeraw"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
