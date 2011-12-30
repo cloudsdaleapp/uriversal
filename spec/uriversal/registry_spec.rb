@@ -42,9 +42,10 @@ describe Uriversal::Registry do
         domain [/^valid-registry-query-match.com$/i] do
           query [/^?q="hello"$/i], [:default]
         end
-        domain [/^valid-registry-path-match.com$/i] do
+        domain [/^valid-registry-path-match.com$/i,/^valid-registry-nested-match.com$/i] do
           path [/^\/path$/i], [:default] do
             file_type [/^png$/i], [:file]
+            query [/^?q='should_not_be_matched'$/i], [:default]
           end
         end
       end
@@ -52,6 +53,7 @@ describe Uriversal::Registry do
       @valid_file_link = Uriversal.parse('http://valid-registry-file-match.com/file.end')
       @valid_query_link = Uriversal.parse('http://valid-registry-query-match.com/?q="hello"')
       @valid_path_link = Uriversal.parse('http://valid-registry-path-match.com/path')
+      @valid_path_with_query_link = Uriversal.parse('http://valid-registry-nested-fallback-match.com/path?q=\'hello\'')
       @valid_path_with_file_link = Uriversal.parse('http://valid-registry-path-match.com/path.png')
     end
     it 'should return a match object' do
@@ -82,6 +84,10 @@ describe Uriversal::Registry do
     
     it 'should match on file under nested path' do
       Uriversal::Registry.match(@valid_path_with_file_link).match_object.class.should == Uriversal::Registry::FileType
+    end
+    
+    it 'should fall back on previous match level if no match was found under the nesting' do
+      Uriversal::Registry.match(@valid_path_with_query_link).match_object.class.should == Uriversal::Registry::Path
     end
     
     it 'should match on domain' do
