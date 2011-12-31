@@ -9,7 +9,7 @@ describe Uriversal do
     end
 
     it 'should return nil if incorrect url is provided' do
-      lambda { Uriversal.parse("htp://www.invalid-url.com").should == nil }.should raise_error(ArgumentError)
+      Uriversal.parse("htp://www.invalid-url.com").should raise_error(ArgumentError 'invalid url')
     end
 
   end

@@ -16,10 +16,10 @@ describe Uriversal::Url do
       @url.raw.should == 'http://google.com:3000/path.png?q=hello'
       @url.protocol.should == 'http'
       @url.domain.should == 'google.com'
-      @url.port.should == '3000'
+      @url.port.should == 3000
       @url.path.should == '/path'
       @url.file_type.should == 'png'
-      @url.query.should == '?q=hello'
+      @url.query.should == 'q=hello'
     end
     
   end

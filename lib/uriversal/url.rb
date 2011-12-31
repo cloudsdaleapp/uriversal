@@ -2,18 +2,18 @@ module Uriversal
   
   class Url
     
-    attr_accessor :raw, :protocol, :domain, :port, :path, :file_type, :query, :uri
+    attr_reader :raw, :protocol, :domain, :port, :path, :file_type, :query, :uri
     
     def initialize(url,options={})
-      if url =~ /^((ftp|https?):\/\/)?([a-z\d]+([\-\.][a-z\d]+)*\.[a-z]{2,6})((:(\d{1,5}))?((\/[\w\'\"\,\-\/\:\&\=\#\%\+\(\)]*)(\.([a-z]{0,4}))?\/?(\?.*)?)?)?$/
-        self.raw = url
-        self.protocol  = $2     || 'http'
-        self.domain    = $3     || ''
-        self.port      = $7
-        self.path      = $9     || ''
-        self.file_type = $11    || ''
-        self.query     = $12    || ''
-        self.uri       = URI.parse(raw)
+      unless (url =~ URI::regexp).nil?
+        @uri        = Addressable::URI.parse(url)
+        @raw        = @uri.to_s
+        @protocol   = @uri.scheme
+        @domain     = @uri.host
+        @port       = @uri.port
+        @path       = @uri.path.chomp(File.extname(@uri.path))
+        @file_type  = File.extname(@uri.path).sub(/\./i,"")
+        @query      = @uri.query
       else
         raise ArgumentError, "invalid url"
       end

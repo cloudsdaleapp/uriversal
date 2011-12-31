@@ -4,6 +4,7 @@ module Uriversal
   require 'active_support/core_ext/string'
   require 'nokogiri'
   require 'open-uri'
+  require 'addressable/uri'
 
   require 'pry'
 
