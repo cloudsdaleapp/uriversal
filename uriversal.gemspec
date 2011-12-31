@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
     "lib/uriversal/response.rb",
     "lib/uriversal/strategy.rb",
     "lib/uriversal/url.rb",
+    "lib/uriversal/version.rb",
     "spec/spec_helper.rb",
     "spec/uriversal/registry/domain_spec.rb",
     "spec/uriversal/registry/file_type_spec.rb",
@@ -42,7 +43,11 @@ Gem::Specification.new do |s|
     "spec/uriversal/registry_spec.rb",
     "spec/uriversal/strategy_spec.rb",
     "spec/uriversal/url_spec.rb",
-    "spec/uriversal_spec.rb"
+    "spec/uriversal_spec.rb",
+    "test_app/Gemfile",
+    "test_app/Gemfile.lock",
+    "test_app/app.rb",
+    "uriversal.gemspec"
   ]
   s.homepage = "http://github.com/IOMUSE/Uriversal"
   s.licenses = ["MIT"]

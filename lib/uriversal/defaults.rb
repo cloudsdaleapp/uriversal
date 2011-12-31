@@ -15,7 +15,7 @@ Uriversal::Strategy.add(:default) do
     doc = Nokogiri::HTML(request)
     
     # Title
-    data :title, doc.css('title').first.try(:content)
+    data :title, doc.css('title').first.try(:content).strip
     
     # Favicon
     favicon = doc.css('link[rel=icon]').try(:first)
