@@ -2,6 +2,8 @@ module Uriversal
 
   require "active_support/inflector"
   require 'active_support/core_ext/string'
+  require 'nokogiri'
+  require 'open-uri'
 
   require 'pry'
 
@@ -20,8 +22,7 @@ module Uriversal
   end
 
   def self.parse str, options={}
-    url = Uriversal::Url.new(str)
-    url.load_data!
+    Uriversal::Url.new(str).load_data!
   end
 
   

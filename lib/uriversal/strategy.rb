@@ -1,9 +1,6 @@
 module Uriversal
   class Strategy
     
-    require 'nokogiri'
-    require 'open-uri'
-    
     #STATUSES = { ok: ['200'], broken: ['404','500','303'] }
     EVENTS = [:success,:error]
     
