@@ -1,3 +1,0 @@
-source "http://rubygems.org"
-
-gem 'uriversal', git: "git://github.com/IOMUSE/Uriversal.git"
