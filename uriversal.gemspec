@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "uriversal"
-  s.version = "0.0.1.pre3"
+  s.version = "0.0.1.pre4"
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Zeeraw"]
@@ -44,9 +44,6 @@ Gem::Specification.new do |s|
     "spec/uriversal/strategy_spec.rb",
     "spec/uriversal/url_spec.rb",
     "spec/uriversal_spec.rb",
-    "test_app/Gemfile",
-    "test_app/Gemfile.lock",
-    "test_app/app.rb",
     "uriversal.gemspec"
   ]
   s.homepage = "http://github.com/IOMUSE/Uriversal"
