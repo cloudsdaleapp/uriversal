@@ -13,12 +13,14 @@ Uriversal::Strategy.add(:default) do
   on :success do |url,request|
     
     doc = Nokogiri::HTML(request)
-    
+
     # Title
     data :title, doc.css('title').first.try(:content).strip
-    
+
     # Favicon
     favicon = doc.css('link[rel=icon]').try(:first)
+    favicon = doc.css('link[rel=shortcut]').try(:first) if favicon.nil?
+    
     data :favicon, favicon.nil? ? '' : favicon['href'].strip
     
   end
