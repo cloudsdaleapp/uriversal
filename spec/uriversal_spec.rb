@@ -33,14 +33,12 @@ describe 'Default Settings' do
         Uriversal.registry.domains.last.file_types.length.should >= 1
       end
       it 'last domain in registry should be matching all file types' do
-        Uriversal.registry.domains.last.file_types.each do |ft|
-          ft.match_strings.should  == [/^.*$/i]
-        end
+        Uriversal.registry.domains.last.file_types[0].match_strings.should  == [/^html$|^php$|^xhtml$/i]
+        Uriversal.registry.domains.last.file_types[1].match_strings.should  == [/^.*$/i]
       end
       it 'last domain in registry should be returning file strategy if files are specified' do
-        Uriversal.registry.domains.last.file_types.each do |ft|
-          ft.strategies.should  == [:file]
-        end
+        Uriversal.registry.domains.last.file_types[0].strategies.should  == [:default]
+        Uriversal.registry.domains.last.file_types[1].strategies.should  == [:file]
       end
     end
   end
