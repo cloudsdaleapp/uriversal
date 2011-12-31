@@ -6,7 +6,7 @@ module Uriversal
     
     def initialize(url,options={})
       unless (url =~ URI::regexp).nil?
-        @uri        = Addressable::URI.parse(url)
+        @uri        = Addressable::URI.heuristic_parse(url)
         @raw        = @uri.to_s
         @protocol   = @uri.scheme
         @domain     = @uri.host
