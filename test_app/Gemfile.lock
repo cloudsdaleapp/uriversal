@@ -1,9 +1,10 @@
 GIT
   remote: git://github.com/IOMUSE/Uriversal.git
-  revision: 4749a5792e31297ad51b148232efa1db52bd3cea
+  revision: a195e30e03cbe449b653d625aaef83350f654302
   specs:
-    uriversal (0.0.1.pre1)
+    uriversal (0.0.1.pre2)
       activesupport
+      addressable
       i18n
       nokogiri
 
@@ -12,6 +13,7 @@ GEM
   specs:
     activesupport (3.1.3)
       multi_json (~> 1.0)
+    addressable (2.2.6)
     i18n (0.6.0)
     multi_json (1.0.4)
     nokogiri (1.5.0)
