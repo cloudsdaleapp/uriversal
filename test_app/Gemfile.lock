@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/IOMUSE/Uriversal.git
-  revision: a195e30e03cbe449b653d625aaef83350f654302
+  revision: e3a6abb98a166c470c823d0a8bcbb5f1084b7e54
   specs:
     uriversal (0.0.1.pre2)
       activesupport

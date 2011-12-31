@@ -3,6 +3,7 @@ Uriversal.registry.config do
   domain(/^.*$/i, :default) do # Matches all domains
     
     file_type(/^.*$/i, :file) # Matches all file types
+    file_type(/html|php|xhtml/i,:default)
     
   end
   
