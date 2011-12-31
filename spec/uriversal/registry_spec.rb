@@ -51,9 +51,9 @@ describe Uriversal::Registry do
       end
       @valid_link = Uriversal.parse('http://valid-registry-match.com')
       @valid_file_link = Uriversal.parse('http://valid-registry-file-match.com/file.end')
-      @valid_query_link = Uriversal.parse('http://valid-registry-query-match.com/?q="hello"')
+      @valid_query_link = Uriversal.parse('http://valid-registry-query-match.com/?q=hello')
       @valid_path_link = Uriversal.parse('http://valid-registry-path-match.com/path')
-      @valid_path_with_query_link = Uriversal.parse('http://valid-registry-nested-fallback-match.com/path?q=\'hello\'')
+      @valid_path_with_query_link = Uriversal.parse('http://valid-registry-nested-fallback-match.com/path?q=hello')
       @valid_path_with_file_link = Uriversal.parse('http://valid-registry-path-match.com/path.png')
     end
     it 'should return a match object' do
@@ -64,9 +64,6 @@ describe Uriversal::Registry do
     it 'should return a match object with valid strategries' do
       [@valid_link,@valid_file_link,@valid_query_link,@valid_query_link].each do |link|
         Uriversal::Registry.match(link).match_object.strategies.length.should >= 1
-        Uriversal::Registry.match(link).match_object.strategies.each do |strategry|
-          strategry.constantize.include?(Uriversal::Strategy)
-        end
       end
     end
     

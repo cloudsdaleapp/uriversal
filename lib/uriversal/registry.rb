@@ -22,8 +22,7 @@ module Uriversal
       attr_accessor :strategies
       def initialize(ms=[],st=[],&block)
         super
-        st = [st] unless st.is_a?(Array)
-        self.strategies = st.map{|s|("Uriversal::Strategies::" + s.to_s.classify)}
+        self.strategies = st.is_a?(Array) ? st : [st]
       end
     end
     
@@ -62,9 +61,9 @@ module Uriversal
       module_eval(&block)
     end
 
-    def self.match(link)
+    def self.match(url)
       @@domains.each do |domain|
-        match = domain.match(link,:domain)
+        match = domain.match(url,:domain)
         return match if match.successful?
       end
     end

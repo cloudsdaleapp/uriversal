@@ -4,8 +4,8 @@ describe Uriversal do
 
   describe '.parse' do
 
-    it 'should return a Uriversal::Link object if correct url is provided' do
-      Uriversal.parse("http://www.valid-url.com").class.should == Uriversal::Link
+    it 'should return a Uriversal::Response' do
+      Uriversal.parse("http://www.valid-url.com").class.should == Uriversal::Response
     end
 
     it 'should return nil if incorrect url is provided' do
@@ -31,7 +31,7 @@ describe 'Default Settings' do
         Uriversal.registry.domains.last.match_strings.should == [/^.*$/i]
       end
       it 'last domain in registry should return default strategy' do
-        Uriversal.registry.domains.last.strategies.should == ["Uriversal::Strategies::Default"]
+        Uriversal.registry.domains.last.strategies.should == [:default]
       end
       it 'last domain in registry should be matching file types' do
         Uriversal.registry.domains.last.file_types.length.should >= 1
@@ -43,18 +43,9 @@ describe 'Default Settings' do
       end
       it 'last domain in registry should be returning file strategy if files are specified' do
         Uriversal.registry.domains.last.file_types.each do |ft|
-          ft.strategies.should  == ["Uriversal::Strategies::File"]
+          ft.strategies.should  == [:file]
         end
       end
-    end
-  end
-  
-  describe 'Strategies' do
-    it 'should be 2 or more strategies available' do
-      Uriversal.strategies.length.should >= 1
-    end
-    it 'should be a default strategy' do
-      Uriversal.strategies.include?(Uriversal::Strategies::Default).should == true
     end
   end
 end
