@@ -27,7 +27,7 @@ describe Uriversal::Strategy do
     end
   end
   
-  describe 'status!' do
+  describe '.status!' do
     it 'should change the status' do
       strategy = Uriversal::Strategy.new(:test,Uriversal::Url.new("http://www.google.com/"))
       strategy.response[:status].should == '0'
@@ -36,7 +36,7 @@ describe Uriversal::Strategy do
     end
   end
   
-  describe 'perform' do
+  describe '.perform' do
     it 'should return a Uriversal::Response' do
       strategy = Uriversal::Strategy.new(:test,Uriversal::Url.new("http://www.google.com/"))
       strategy.perform.class.should == Uriversal::Response

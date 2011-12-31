@@ -25,20 +25,12 @@ module Uriversal
     end
     
     def load_data!
-      find_match
-    end
-    
-    private
-    
-    def find_match
-      Uriversal::Registry.match(self)
-      # if ().successful?
-      #   match.match_object.strategies.each do |strategy|
-      #     strategy = Uriversal::Strategy.new(strategy,self)
-      #     strategy.perform
-      #   end
-      #   Uriversal::Response.new({ status: '0', data: {}},self)
-      # end
+      match = Uriversal::Registry.match(self)
+      match.match_object.strategies.each do |strategy_name|
+        strategy = Uriversal::Strategy.new(strategy_name,self)
+        return strategy.perform
+      end
+      return Uriversal::Response.new({status:'',data:{}},self)
     end
     
   end

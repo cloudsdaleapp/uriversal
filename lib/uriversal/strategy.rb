@@ -35,7 +35,7 @@ module Uriversal
         request = open(@url.uri.to_s)
         status!(request.status)
         run!(:success,@url,request) unless args[:skip_request]
-      rescue [OpenURI::HTTPError] => error
+      rescue OpenURI::HTTPError => error
         status!(error.message.split(" ",2))
         run!(:error,@url,error) unless args[:skip_request]
       rescue SocketError => error
@@ -45,6 +45,10 @@ module Uriversal
       return Uriversal::Response.new(response,@url)
     end
     
+    def data(key,d)
+      @response[:data][key] = d || ""
+    end
+    
     private
     
     def status!(s)
@@ -52,12 +56,8 @@ module Uriversal
     end
     
     def run!(event,url,obj)
-      @@strategies[namespace][event].call(url,obj)
-    end
-    
-    def data(key)
-      @response[:data][key] ||= ""
-    end
+      instance_exec(url,obj,&@@strategies[namespace][event])
+    end    
     
     def self.on(event,&block)
       raise ArgumentError "invalid event - only :success and :error allowed" unless EVENTS.include?(event)

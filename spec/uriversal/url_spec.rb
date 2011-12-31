@@ -5,21 +5,21 @@ describe Uriversal::Url do
   describe '.new' do
     
     before do
-      @link = Uriversal::Url.new('http://google.com:3000/path.png?q=hello')
+      @url = Uriversal::Url.new('http://google.com:3000/path.png?q=hello')
     end
     
     it 'should return self as instance' do
-      @link.class.should == Uriversal::Url
+      @url.class.should == Uriversal::Url
     end
     
     it 'should have specific values' do
-      @link.raw.should == 'http://google.com:3000/path.png?q=hello'
-      @link.protocol.should == 'http'
-      @link.domain.should == 'google.com'
-      @link.port.should == '3000'
-      @link.path.should == '/path'
-      @link.file_type.should == 'png'
-      @link.query.should == '?q=hello'
+      @url.raw.should == 'http://google.com:3000/path.png?q=hello'
+      @url.protocol.should == 'http'
+      @url.domain.should == 'google.com'
+      @url.port.should == '3000'
+      @url.path.should == '/path'
+      @url.file_type.should == 'png'
+      @url.query.should == '?q=hello'
     end
     
   end
@@ -35,13 +35,13 @@ describe Uriversal::Url do
   describe '.is_file?' do
     
     it 'should return true as file is set to .png' do
-      @link = Uriversal::Url.new('http://google.com/path/to/file.jpg')
-      @link.is_file?.should == true
+      @url = Uriversal::Url.new('http://google.com/path/to/file.jpg')
+      @url.is_file?.should == true
     end
     
     it 'should return false as file is not set' do
-      @link = Uriversal::Url.new('http://google.com/path/to/file')
-      @link.is_file?.should == false
+      @url = Uriversal::Url.new('http://google.com/path/to/file')
+      @url.is_file?.should == false
     end
     
   end

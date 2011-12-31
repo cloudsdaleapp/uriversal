@@ -40,7 +40,7 @@ describe Uriversal::Registry do
           file_type [/^end$/i], [:file]
         end
         domain [/^valid-registry-query-match.com$/i] do
-          query [/^?q="hello"$/i], [:default]
+          query [/^?q=hello$/i], [:default]
         end
         domain [/^valid-registry-path-match.com$/i,/^valid-registry-nested-match.com$/i] do
           path [/^\/path$/i], [:default] do
@@ -49,12 +49,12 @@ describe Uriversal::Registry do
           end
         end
       end
-      @valid_link = Uriversal.parse('http://valid-registry-match.com')
-      @valid_file_link = Uriversal.parse('http://valid-registry-file-match.com/file.end')
-      @valid_query_link = Uriversal.parse('http://valid-registry-query-match.com/?q=hello')
-      @valid_path_link = Uriversal.parse('http://valid-registry-path-match.com/path')
-      @valid_path_with_query_link = Uriversal.parse('http://valid-registry-nested-fallback-match.com/path?q=hello')
-      @valid_path_with_file_link = Uriversal.parse('http://valid-registry-path-match.com/path.png')
+      @valid_link = Uriversal::Url.new('http://valid-registry-match.com')
+      @valid_file_link = Uriversal::Url.new('http://valid-registry-file-match.com/file.end')
+      @valid_query_link = Uriversal::Url.new('http://valid-registry-query-match.com/?q=hello')
+      @valid_path_link = Uriversal::Url.new('http://valid-registry-path-match.com/path')
+      @valid_path_with_query_link = Uriversal::Url.new('http://valid-registry-nested-fallback-match.com/path?q=hello')
+      @valid_path_with_file_link = Uriversal::Url.new('http://valid-registry-path-match.com/path.png')
     end
     it 'should return a match object' do
       [@valid_link,@valid_file_link].each do |link|
