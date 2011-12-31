@@ -12,8 +12,11 @@ end
 require 'rake'
 
 require 'jeweler'
+
+require './lib/uriversal/version'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.version = Uriversal::Version::STRING
   gem.name = "uriversal"
   gem.homepage = "http://github.com/IOMUSE/Uriversal"
   gem.license = "MIT"
@@ -21,6 +24,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = ""
   gem.email = "zeeraw@cloudsdale.org"
   gem.authors = ["Zeeraw"]
+  
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
