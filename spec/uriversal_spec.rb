@@ -7,11 +7,7 @@ describe Uriversal do
     it 'should return a Uriversal::Response' do
       Uriversal.parse("http://www.valid-url.com").class.should == Uriversal::Response
     end
-
-    it 'should return nil if incorrect url is provided' do
-      Uriversal.parse("htp://www.invalid-url.com").should raise_error(ArgumentError 'invalid url')
-    end
-
+    
   end
 
   describe '.registry' do

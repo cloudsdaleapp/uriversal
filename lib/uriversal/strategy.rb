@@ -38,6 +38,9 @@ module Uriversal
       rescue SocketError => error
         status!(["404","Not Found"])
         run!(:error,@url,error) unless args[:skip_request]
+      rescue Errno::ENOENT => error
+        status!(["400","Bad Request"])
+        run!(:error,@url,error) unless args[:skip_request]
       end
       return Uriversal::Response.new(response,@url)
     end
