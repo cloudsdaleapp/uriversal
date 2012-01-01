@@ -2,21 +2,17 @@ module Uriversal
   
   class Response
     
-    attr_reader :status, :data, :url
+    attr_reader :strategy, :status, :data, :url
     
-    def initialize(response,url)
-      raise ArgumentError "needs a hash as argument" unless response.is_a?(Hash)
-      @status = response[:status]
-      @data = response[:data]
-      @url = url
+    def initialize(strategy,url,args={})
+      @strategy = strategy
+      @url      = url
+      @status   = args[:status] || ['0',""]
+      @data     = args[:data] || {}
     end
     
     def valid?
       @status.include? "200"
-    end
-    
-    def retry!
-      Uriversal.parse(url.raw)
     end
     
   end

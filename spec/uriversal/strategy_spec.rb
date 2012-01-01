@@ -30,9 +30,9 @@ describe Uriversal::Strategy do
   describe '.status!' do
     it 'should change the status' do
       strategy = Uriversal::Strategy.new(:test,Uriversal::Url.new("http://www.google.com/"))
-      strategy.response[:status].should == '0'
+      strategy.response.status.should_not eq(["200","OK"])
       strategy.send(:status!,["200","OK"])
-      strategy.response[:status].should == ["200","OK"]
+      strategy.response.status.should eq(["200","OK"])
     end
   end
   

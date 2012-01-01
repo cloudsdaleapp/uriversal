@@ -19,12 +19,13 @@ module Uriversal
       @@namespace = :""
     end
     
-    attr_accessor :response, :namespace
+    attr_reader :response, :namespace, :match, :url
     
     def initialize(_namespace,url)
       @namespace = _namespace
       @url = url
-      @response = { status: '0', data: {} }
+      @match = url.raw
+      @response = Uriversal::Response.new(self,@url)
     end
     
     def perform(args={})
@@ -42,17 +43,20 @@ module Uriversal
         status!(["400","Bad Request"])
         run!(:error,@url,error) unless args[:skip_request]
       end
-      return Uriversal::Response.new(response,@url)
+      return @response
     end
     
-    def data(key,d)
-      @response[:data][key] = d || ""
+    def data(key,val)
+      @response.instance_variable_get(:@data).store(key,val)
     end
     
     private
     
+    def match=(string)
+    end
+    
     def status!(s)
-      @response[:status] = s
+      @response.instance_variable_set(:@status, s)
     end
     
     def run!(event,url,obj)
