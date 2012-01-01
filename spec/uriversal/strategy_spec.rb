@@ -3,11 +3,21 @@ require 'spec_helper'
 describe Uriversal::Strategy do
   
   describe '#initialize' do
-    it 'should have present instance variables' do
-      strategy = Uriversal::Strategy.new(:test,Uriversal::Url.new("http://www.google.com/"))
-      strategy.namespace.should == :test
-      strategy.response == { status: '', data: {} }
+    
+    before :each do
+      @strategy = Uriversal::Strategy.new(:test,Uriversal::Url.new("http://www.google.com/"))
     end
+    
+    it 'should have present instance variables' do
+      @strategy.namespace.should == :test
+      @strategy.response == { status: '', data: {} }
+    end
+    
+    it 'should have a valid match string equal to the raw url' do
+      @strategy.match.should be_a_kind_of(String)
+      @strategy.match.should eq(@strategy.url.raw)
+    end
+    
   end
   
   describe '.add' do
