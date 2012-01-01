@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "uriversal"
-  s.version = "0.0.1.pre4"
+  s.version = "0.0.1.pre5"
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Zeeraw"]
-  s.date = "2011-12-31"
+  s.date = "2012-01-01"
   s.description = ""
   s.email = "zeeraw@cloudsdale.org"
   s.extra_rdoc_files = [
